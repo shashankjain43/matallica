@@ -1,4 +1,9 @@
 package com.matallica.model.response;
 
-public class DeleteTradeResponse {
+import lombok.Data;
+
+@Data
+public class DeleteTradeResponse extends BaseResponse {
+
+    String message;
 }

@@ -1,5 +1,6 @@
 package com.matallica.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
+@JsonIgnoreProperties(value = {"location"})
 public class Trade {
 
     @Id

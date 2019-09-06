@@ -2,10 +2,7 @@ package com.matallica.controller;
 
 import com.matallica.model.request.CreateTradeRequest;
 import com.matallica.model.request.UpdateTradeRequest;
-import com.matallica.model.response.CreateTradeResponse;
-import com.matallica.model.response.GetTradeResponse;
-import com.matallica.model.response.ServiceResponse;
-import com.matallica.model.response.UpdateTradeResponse;
+import com.matallica.model.response.*;
 import com.matallica.service.ITradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +28,16 @@ public class TradeController {
         return res;
     }
 
+    @GetMapping("/{tradeId}")
+    public ServiceResponse<GetTradeResponse> createTrade(@PathVariable @Min(1) Long tradeId){
+
+        GetTradeResponse response = new GetTradeResponse();
+        response.setTrade(tradeService.getTrade(tradeId));
+        ServiceResponse<GetTradeResponse> res = new ServiceResponse<>();
+        res.setResponse(response);
+        return res;
+    }
+
     @PostMapping("/update")
     public ServiceResponse<UpdateTradeResponse> createTrade(@Valid @RequestBody UpdateTradeRequest request){
 
@@ -42,15 +49,15 @@ public class TradeController {
         return res;
     }
 
-    @GetMapping("/{tradeId}")
-    public ServiceResponse<GetTradeResponse> createTrade(@PathVariable @Min(1) Long tradeId){
+    @DeleteMapping("/{tradeId}")
+    public ServiceResponse<DeleteTradeResponse> deleteTrade(@PathVariable @Min(1) Long tradeId){
 
-        GetTradeResponse response = new GetTradeResponse();
-        response.setTrade(tradeService.getTrade(tradeId));
-        ServiceResponse<GetTradeResponse> res = new ServiceResponse<>();
+        DeleteTradeResponse response = new DeleteTradeResponse();
+        tradeService.deleteById(tradeId);
+        response.setMessage("Successfully deleted!");
+        ServiceResponse<DeleteTradeResponse> res = new ServiceResponse<DeleteTradeResponse>();
         res.setResponse(response);
         return res;
     }
-
 
 }

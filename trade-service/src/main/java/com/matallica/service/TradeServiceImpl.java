@@ -41,4 +41,12 @@ public class TradeServiceImpl implements ITradeService {
         }
         tradeDao.save(trade);
     }
+
+    @Override
+    public void deleteById(Long tradeId) {
+        if(tradeDao.countById(tradeId) <= 0){
+            throw new ServiceException("ER-1003", "No such Trade exists!");
+        }
+        tradeDao.deleteById(tradeId);
+    }
 }

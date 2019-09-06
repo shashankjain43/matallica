@@ -39,7 +39,7 @@ public class BaseController {
     }
 
     @ExceptionHandler(TradeNotFoundException.class)
-    public <T extends BaseResponse> ServiceResponse<T> handleRuntimeException(TradeNotFoundException exception, HttpServletResponse http){
+    public <T extends BaseResponse> ServiceResponse<T> handleTradeNotFoundException(TradeNotFoundException exception, HttpServletResponse http){
         ServiceResponse<T> serviceResponse = new ServiceResponse();
         serviceResponse.setException(exception);
         http.setStatus(HttpStatus.NOT_FOUND.value());

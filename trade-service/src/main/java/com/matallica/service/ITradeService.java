@@ -8,4 +8,6 @@ public interface ITradeService {
     Trade getTrade(Long tradeId);
 
     void updateTrade(Trade trade);
+
+    void deleteById(Long tradeId);
 }
