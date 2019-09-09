@@ -27,4 +27,5 @@ public class Trade {
     String counterParty;
     String location;
     Date tradeDate;
+    String tradeStatus;
 }

@@ -11,15 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "my-zuul-api-gateway")
-@RibbonClient(name= "ref-data-service")
-public interface RefDataServiceClient {
+@RibbonClient(name= "market-data-service")
+public interface MarketDataServiceClient {
 
-    @GetMapping("/ref-data-service/v1/commodities")
-    ServiceResponse<GetAllCommoditiesResponse> getAllCommodities();
-
-    @GetMapping("/ref-data-service/v1/locations")
-    ServiceResponse<GetAllLocationsResponse> getAllLocations();
-
-    @GetMapping("/ref-data-service/v1/parties")
-    ServiceResponse<GetAllPartiesResponse> getAllParties();
+    @GetMapping("market-data-service/v1/market/{commodityCode}")
+    ServiceResponse<GetMarketDataResponse> getMarketPrice(@PathVariable("commodityCode") String commodityCode);
 }

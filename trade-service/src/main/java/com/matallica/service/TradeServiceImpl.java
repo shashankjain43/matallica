@@ -1,7 +1,10 @@
 package com.matallica.service;
 
+import com.matallica.client.MarketDataServiceClient;
 import com.matallica.client.RefDataServiceClient;
 import com.matallica.client.model.response.GetAllCommoditiesResponse;
+import com.matallica.client.model.response.GetMarketDataResponse;
+import com.matallica.constants.AppConstant;
 import com.matallica.dao.TradeDao.TradeDao;
 import com.matallica.exception.ServiceException;
 import com.matallica.exception.TradeNotFoundException;
@@ -22,12 +25,18 @@ public class TradeServiceImpl implements ITradeService {
     @Autowired
     RefDataServiceClient client;
 
+    @Autowired
+    MarketDataServiceClient mdClient;
+
     @Override
     public void createTrade(Trade trade) {
         trade.setTradeDate(new Date());
         if (tradeDao.countById(trade.getId()) > 0) {
             throw new ServiceException("ER-1002", "Trade already exists!");
         }
+        ServiceResponse<GetMarketDataResponse> mdResponse = mdClient.getMarketPrice(trade.getCommodity());
+        trade.setPrice(mdResponse.getResponse().getPrice());
+        trade.setTradeStatus(AppConstant.CREATED);
         tradeDao.save(trade);
     }
 
