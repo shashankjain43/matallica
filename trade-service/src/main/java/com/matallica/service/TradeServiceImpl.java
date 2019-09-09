@@ -36,7 +36,7 @@ public class TradeServiceImpl implements ITradeService {
         }
         ServiceResponse<GetMarketDataResponse> mdResponse = mdClient.getMarketPrice(trade.getCommodity());
         trade.setPrice(mdResponse.getResponse().getPrice());
-        trade.setTradeStatus(AppConstant.CREATED);
+        trade.setTradeStatus(AppConstant.INITIATED);
         tradeDao.save(trade);
     }
 
