@@ -10,6 +10,7 @@ import com.metallica.exception.ServiceException;
 import com.metallica.exception.TradeNotFoundException;
 import com.metallica.model.entity.Trade;
 import com.metallica.model.response.ServiceResponse;
+import com.metallica.rabbitmq.MessageSender;
 import com.metallica.rabbitmq.config.RabbitMQConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,7 @@ public class TradeServiceImpl implements ITradeService {
     MarketDataServiceClient mdClient;
 
     @Autowired
-    RabbitTemplate rabbitTemplate;
-
-    @Autowired
-    RabbitMQConfig mqConfig;
+    MessageSender publisher;
 
     @Override
     public void createTrade(Trade trade) {
@@ -45,7 +43,7 @@ public class TradeServiceImpl implements ITradeService {
         ServiceResponse<GetMarketDataResponse> mdResponse = mdClient.getMarketPrice(trade.getCommodity());
         trade.setPrice(mdResponse.getResponse().getPrice());
         trade.setTradeStatus(AppConstant.INITIATED);
-        rabbitTemplate.convertAndSend(mqConfig.getExchangeName(), mqConfig.getRoutingKey(), trade);
+        publisher.produceMsg(trade);
         tradeDao.save(trade);
     }
 
