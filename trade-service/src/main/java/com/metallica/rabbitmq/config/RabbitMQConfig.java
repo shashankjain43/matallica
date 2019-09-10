@@ -24,7 +24,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Exchange eventExchange() {
-        return new TopicExchange(exchangeName);
+        return new DirectExchange(exchangeName);
     }
 
     @Bean
