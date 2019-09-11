@@ -1,8 +1,6 @@
 package com.metallica.service;
 
 import com.metallica.client.MarketDataServiceClient;
-import com.metallica.client.RefDataServiceClient;
-import com.metallica.client.model.response.GetAllCommoditiesResponse;
 import com.metallica.client.model.response.GetMarketDataResponse;
 import com.metallica.constants.AppConstant;
 import com.metallica.dao.TradeDao.TradeDao;
@@ -11,8 +9,6 @@ import com.metallica.exception.TradeNotFoundException;
 import com.metallica.model.entity.Trade;
 import com.metallica.model.response.ServiceResponse;
 import com.metallica.rabbitmq.MessageSender;
-import com.metallica.rabbitmq.config.RabbitMQConfig;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,9 +20,6 @@ public class TradeServiceImpl implements ITradeService {
 
     @Autowired
     TradeDao tradeDao;
-
-    @Autowired
-    RefDataServiceClient client;
 
     @Autowired
     MarketDataServiceClient mdClient;
