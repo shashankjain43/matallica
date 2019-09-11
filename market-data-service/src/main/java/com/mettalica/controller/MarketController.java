@@ -2,7 +2,7 @@ package com.mettalica.controller;
 
 import com.mettalica.dao.MarketDataDao;
 import com.mettalica.exception.ServiceException;
-import com.mettalica.model.entity.MarketData;
+import com.mettalica.model.MarketData;
 import com.mettalica.model.response.GetMarketDataResponse;
 import com.mettalica.model.response.ServiceResponse;
 import org.springframework.beans.factory.annotation.Autowired;

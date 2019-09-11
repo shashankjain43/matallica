@@ -1,4 +1,4 @@
-package com.mettalica.model.entity;
+package com.mettalica.model;
 
 import lombok.Data;
 

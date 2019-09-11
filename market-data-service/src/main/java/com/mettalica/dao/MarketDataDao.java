@@ -1,6 +1,6 @@
 package com.mettalica.dao;
 
-import com.mettalica.model.entity.MarketData;
+import com.mettalica.model.MarketData;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
