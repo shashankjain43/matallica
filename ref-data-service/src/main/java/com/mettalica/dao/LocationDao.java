@@ -1,7 +1,6 @@
 package com.mettalica.dao;
 
-import com.mettalica.model.entity.Location;
-import com.mettalica.model.entity.Party;
+import com.mettalica.model.Location;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

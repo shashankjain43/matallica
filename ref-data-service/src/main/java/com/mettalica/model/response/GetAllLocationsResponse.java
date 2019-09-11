@@ -1,6 +1,6 @@
 package com.mettalica.model.response;
 
-import com.mettalica.model.entity.Location;
+import com.mettalica.model.Location;
 import lombok.Data;
 
 import java.util.List;

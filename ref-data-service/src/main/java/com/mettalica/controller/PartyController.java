@@ -1,7 +1,7 @@
 package com.mettalica.controller;
 
 import com.mettalica.dao.PartyDao;
-import com.mettalica.model.entity.Party;
+import com.mettalica.model.Party;
 import com.mettalica.model.response.GetAllPartiesResponse;
 import com.mettalica.model.response.ServiceResponse;
 import org.springframework.beans.factory.annotation.Autowired;

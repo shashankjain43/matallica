@@ -1,4 +1,4 @@
-package com.mettalica.model.entity;
+package com.mettalica.model;
 
 import lombok.Data;
 
@@ -9,11 +9,11 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class Commodity {
+public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     String code;
-    String description;
+    String name;
 }

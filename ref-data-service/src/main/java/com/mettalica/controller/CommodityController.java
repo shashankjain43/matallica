@@ -1,7 +1,7 @@
 package com.mettalica.controller;
 
 import com.mettalica.dao.CommodityDao;
-import com.mettalica.model.entity.Commodity;
+import com.mettalica.model.Commodity;
 import com.mettalica.model.response.GetAllCommoditiesResponse;
 import com.mettalica.model.response.ServiceResponse;
 import org.springframework.beans.factory.annotation.Autowired;

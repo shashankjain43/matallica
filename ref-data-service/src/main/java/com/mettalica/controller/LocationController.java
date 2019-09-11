@@ -1,11 +1,8 @@
 package com.mettalica.controller;
 
 import com.mettalica.dao.LocationDao;
-import com.mettalica.dao.PartyDao;
-import com.mettalica.model.entity.Location;
-import com.mettalica.model.entity.Party;
+import com.mettalica.model.Location;
 import com.mettalica.model.response.GetAllLocationsResponse;
-import com.mettalica.model.response.GetAllPartiesResponse;
 import com.mettalica.model.response.ServiceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
 package com.mettalica.model.response;
 
-import com.mettalica.model.entity.Commodity;
+import com.mettalica.model.Commodity;
 import lombok.Data;
 
 import java.util.List;
