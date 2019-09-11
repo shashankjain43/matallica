@@ -1,6 +1,7 @@
-package com.mettalica.model.entity;
+package com.mettalica.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,14 +14,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Getter
-@Setter
-@Entity
-@ToString
+@Data
 public class Trade implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String side;
     BigDecimal price;

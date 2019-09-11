@@ -1,4 +1,4 @@
-package com.mettalica;
+package com.mettalica.client.model;
 
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableRabbit
-@EnableFeignClients(basePackages = "com.mettalica.client")
+@EnableFeignClients
 public class NotificationServiceApplication {
 
 	public static void main(String[] args) {
