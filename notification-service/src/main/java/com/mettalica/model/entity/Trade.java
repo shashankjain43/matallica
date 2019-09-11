@@ -9,15 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-@JsonIgnoreProperties(value = {"location"})
 @ToString
-public class Trade {
+public class Trade implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
