@@ -3,7 +3,7 @@ package com.metallica.service;
 import com.metallica.client.MarketDataServiceClient;
 import com.metallica.client.model.response.GetMarketDataResponse;
 import com.metallica.constants.AppConstant;
-import com.metallica.dao.TradeDao.TradeDao;
+import com.metallica.dao.TradeDao;
 import com.metallica.exception.ServiceException;
 import com.metallica.exception.TradeNotFoundException;
 import com.metallica.model.entity.Trade;
@@ -28,7 +28,7 @@ public class TradeServiceImpl implements ITradeService {
     MessageSender publisher;
 
     @Override
-    public void createTrade(Trade trade) {
+    public Trade createTrade(Trade trade) {
         if (tradeDao.countById(trade.getId()) > 0) {
             throw new ServiceException("ER-1002", "Trade already exists!");
         }
@@ -46,6 +46,7 @@ public class TradeServiceImpl implements ITradeService {
         trade.setTradeStatus(AppConstant.INITIATED);
         tradeDao.save(trade);
         publisher.produceMsg(trade);
+        return trade;
     }
 
     @Override

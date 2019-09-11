@@ -5,5 +5,7 @@ import lombok.Data;
 @Data
 public class CreateTradeResponse extends BaseResponse {
 
-    String message;
+    private Long tradeId;
+    private String link;
+
 }

@@ -1,4 +1,4 @@
-package com.metallica.dao.TradeDao;
+package com.metallica.dao;
 
 import com.metallica.model.entity.Trade;
 import org.springframework.data.repository.CrudRepository;

@@ -16,7 +16,6 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@JsonIgnoreProperties(value = {"location"})
 @ToString
 public class Trade implements Serializable {
 

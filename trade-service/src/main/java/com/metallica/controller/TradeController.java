@@ -1,5 +1,6 @@
 package com.metallica.controller;
 
+import com.metallica.model.entity.Trade;
 import com.metallica.model.request.CreateTradeRequest;
 import com.metallica.model.request.UpdateTradeRequest;
 import com.metallica.model.response.*;
@@ -20,16 +21,17 @@ public class TradeController {
     @PostMapping("/create")
     public ServiceResponse<CreateTradeResponse> createTrade(@Valid @RequestBody CreateTradeRequest request){
 
-        tradeService.createTrade(request.getTrade());
+        Trade trade = tradeService.createTrade(request.getTrade());
         CreateTradeResponse response = new CreateTradeResponse();
-        response.setMessage("Successfully created!");
+        response.setTradeId(trade.getId());
+        response.setLink("/v1/trades/"+trade.getId());
         ServiceResponse<CreateTradeResponse> res = new ServiceResponse<>();
         res.setResponse(response);
         return res;
     }
 
     @GetMapping("/{tradeId}")
-    public ServiceResponse<GetTradeResponse> createTrade(@PathVariable @Min(1) Long tradeId){
+    public ServiceResponse<GetTradeResponse> getTrade(@PathVariable @Min(1) Long tradeId){
 
         GetTradeResponse response = new GetTradeResponse();
         response.setTrade(tradeService.getTrade(tradeId));
@@ -39,7 +41,7 @@ public class TradeController {
     }
 
     @PostMapping("/update")
-    public ServiceResponse<UpdateTradeResponse> createTrade(@Valid @RequestBody UpdateTradeRequest request){
+    public ServiceResponse<UpdateTradeResponse> updateTrade(@Valid @RequestBody UpdateTradeRequest request){
 
         tradeService.updateTrade(request.getTrade());
         UpdateTradeResponse response = new UpdateTradeResponse();
