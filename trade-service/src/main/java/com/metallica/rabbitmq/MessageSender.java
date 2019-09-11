@@ -13,7 +13,7 @@ public class MessageSender {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    @Value("${rabbitmq.queue-name}")
+    @Value("${rabbitmq.exchange-name}")
     private String exchange;
 
     @Value("${rabbitmq.routing-key}")

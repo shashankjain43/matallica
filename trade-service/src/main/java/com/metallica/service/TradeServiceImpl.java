@@ -44,8 +44,8 @@ public class TradeServiceImpl implements ITradeService {
         trade.setCounterParty("Amazon");
         trade.setLocation("London");
         trade.setTradeStatus(AppConstant.INITIATED);
-        publisher.produceMsg(trade);
         tradeDao.save(trade);
+        publisher.produceMsg(trade);
     }
 
     @Override
