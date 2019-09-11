@@ -24,7 +24,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Exchange eventExchange() {
-        return new DirectExchange(exchangeName);
+        return new TopicExchange(exchangeName);
     }
 
     @Bean
@@ -33,11 +33,11 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public BindingBuilder.GenericArgumentsConfigurer binding(Queue queue, Exchange eventExchange) {
+    public Binding binding(Queue queue, Exchange eventExchange) {
         return BindingBuilder
                 .bind(queue)
                 .to(eventExchange)
-                .with(routingKey);
+                .with(routingKey).noargs();
     }
 
     @Bean

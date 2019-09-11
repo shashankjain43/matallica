@@ -3,6 +3,7 @@ package com.metallica.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import java.util.Date;
 @Setter
 @Entity
 @JsonIgnoreProperties(value = {"location"})
+@ToString
 public class Trade {
 
     @Id

@@ -36,12 +36,20 @@ public class TradeServiceImpl implements ITradeService {
 
     @Override
     public void createTrade(Trade trade) {
-        trade.setTradeDate(new Date());
         if (tradeDao.countById(trade.getId()) > 0) {
             throw new ServiceException("ER-1002", "Trade already exists!");
         }
-        ServiceResponse<GetMarketDataResponse> mdResponse = mdClient.getMarketPrice(trade.getCommodity());
-        trade.setPrice(mdResponse.getResponse().getPrice());
+        if (trade.getPrice() == null) {
+            ServiceResponse<GetMarketDataResponse> mdResponse = mdClient.getMarketPrice(trade.getCommodity());
+            GetMarketDataResponse response = mdResponse.getResponse();
+            if (null == response) {
+                throw new ServiceException("ER-5001", "Error from mdClient: " + mdResponse.getException().getMessage());
+            }
+            trade.setPrice(response.getPrice());
+        }
+        trade.setTradeDate(new Date());
+        trade.setCounterParty("Amazon");
+        trade.setLocation("London");
         trade.setTradeStatus(AppConstant.INITIATED);
         publisher.produceMsg(trade);
         tradeDao.save(trade);
@@ -53,8 +61,6 @@ public class TradeServiceImpl implements ITradeService {
         if (!trade.isPresent()) {
             throw new TradeNotFoundException("ER-1001", "Trade not found!");
         }
-        ServiceResponse<GetAllCommoditiesResponse> commodities = client.getAllCommodities();
-        commodities.getResponse().getCommodities().stream().forEach(e -> System.out.println("" + e));
         return trade.get();
     }
 
