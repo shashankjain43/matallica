@@ -1,6 +1,7 @@
 package com.mettalica.controller;
 
 import com.mettalica.dao.MarketDataDao;
+import com.mettalica.exception.ServiceException;
 import com.mettalica.model.entity.MarketData;
 import com.mettalica.model.response.GetMarketDataResponse;
 import com.mettalica.model.response.ServiceResponse;
@@ -22,6 +23,9 @@ public class MarketController {
 
         GetMarketDataResponse response = new GetMarketDataResponse();
         MarketData data = dao.findByCommodity(commodityCode);
+        if(null == data){
+            throw new ServiceException("ER-1001", "Commodity/Pricing not available!");
+        }
         response.setCommodityCode(data.getCommodity());
         response.setPrice(data.getPrice());
         ServiceResponse<GetMarketDataResponse> res = new ServiceResponse<>();
